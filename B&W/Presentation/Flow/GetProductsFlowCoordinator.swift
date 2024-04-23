@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 protocol GetProductsFlowCoordinatorDependencies {
     func makeProductsListViewController(actions: ProductsListViewModelActions) -> ProductsListViewController
@@ -32,7 +33,9 @@ final class GetProductsFlowCoordinator {
     }
 
     private func showProductDetails(product: Product) {
+        // 🦞
         let vc = dependencies.makeProductDetailsViewController(product: product)
+//        let vc = UIHostingController(rootView: ProductDetailsSwiftUIView())
         productsListVC?.navigationController?.pushViewController(vc, animated: true)
     }
 }

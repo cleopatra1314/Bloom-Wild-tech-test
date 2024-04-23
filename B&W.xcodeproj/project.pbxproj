@@ -38,6 +38,7 @@
 		2B91C7C62514F6DD00F0957C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B91C7C52514F6DD00F0957C /* NetworkService.swift */; };
 		2B91C8522515285100F0957C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B91C8512515285100F0957C /* Observable.swift */; };
 		2BFB4A62251655DB00BD4735 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFB4A61251655DB00BD4735 /* ProductDetailsViewModel.swift */; };
+		C8CDD53F2BD7A36700CA0893 /* ProductDetailsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDD53E2BD7A36700CA0893 /* ProductDetailsSwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		2B91C7C52514F6DD00F0957C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2B91C8512515285100F0957C /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		2BFB4A61251655DB00BD4735 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		C8CDD53E2BD7A36700CA0893 /* ProductDetailsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsSwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		2B891241251356A5004BC46D /* B&W */ = {
 			isa = PBXGroup;
 			children = (
+				C8CDD53D2BD7A34300CA0893 /* SwiftUI */,
 				2B89127725135E38004BC46D /* Application */,
 				2B91C722251398F800F0957C /* Data */,
 				2B91C74A2513ACA400F0957C /* Domain */,
@@ -373,6 +376,14 @@
 			path = Flow;
 			sourceTree = "<group>";
 		};
+		C8CDD53D2BD7A34300CA0893 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				C8CDD53E2BD7A36700CA0893 /* ProductDetailsSwiftUIView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8CDD53F2BD7A36700CA0893 /* ProductDetailsSwiftUIView.swift in Sources */,
 				2B91C7432513AA0E00F0957C /* DataTransferService.swift in Sources */,
 				2B91C7342513A28200F0957C /* ProductResponseDTO.swift in Sources */,
 				2B891247251356A5004BC46D /* ProductDetailsViewController.swift in Sources */,
