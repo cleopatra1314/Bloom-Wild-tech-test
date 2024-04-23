@@ -36,10 +36,17 @@ extension DefaultProductDetailsViewModel {
 
         let url = URL(string: imagePath)!
 
-        // Fetch Image Data
-        if let data = try? Data(contentsOf: url) {
-            // Create Image and Update Image View
-            self.image.value = data
-        }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            // Fetch Image Data
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    // Create Image and Update Image View
+                    self.image.value = data
+                }
+                
+            }
+        }.resume()
+        
     }
 }

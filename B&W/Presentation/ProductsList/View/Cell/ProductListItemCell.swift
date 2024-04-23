@@ -21,15 +21,23 @@ final class ProductListItemCell: UITableViewCell {
         updateImage()
     }
 
+    // MARK: Use URLSession to call API out from main thread.
     private func updateImage() {
         productImageView.image = nil
 
-        let url = URL(string: viewModel.imagePath)!
-
-        // Fetch Image Data
-        if let data = try? Data(contentsOf: url) {
-            // Create Image and Update Image View
-            self.productImageView.image = UIImage(data: data)
+        if let url = URL(string: viewModel.imagePath){
+            
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, responseDecoder, error) in
+                // Fetch Image Data
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        // Create Image and Update Image View
+                        self.productImageView.image = UIImage(data: data)
+                    }
+                }
+            }).resume()
+            
         }
+
     }
 }
