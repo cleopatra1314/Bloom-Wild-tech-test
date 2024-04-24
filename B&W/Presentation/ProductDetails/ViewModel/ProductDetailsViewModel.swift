@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol ProductDetailsViewModelInput {
     func updateImage()
@@ -13,6 +14,7 @@ protocol ProductDetailsViewModelOutput {
 
 protocol ProductDetailsViewModel: ProductDetailsViewModelInput, ProductDetailsViewModelOutput { }
 
+// 🦞
 final class DefaultProductDetailsViewModel: ProductDetailsViewModel {
 
     private let imagePath: String?

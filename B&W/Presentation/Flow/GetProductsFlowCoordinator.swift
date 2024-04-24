@@ -4,6 +4,7 @@ import SwiftUI
 protocol GetProductsFlowCoordinatorDependencies {
     func makeProductsListViewController(actions: ProductsListViewModelActions) -> ProductsListViewController
     func makeProductDetailsViewController(product: Product) -> ProductDetailsViewController
+    func makeProductDetailsSwiftUIView(product: Product) -> ProductDetailsSwiftUIView
 }
 
 final class GetProductsFlowCoordinator {
@@ -23,7 +24,7 @@ final class GetProductsFlowCoordinator {
     }
 
     func start() {
-        let actions = ProductsListViewModelActions(showProductDetails: showProductDetails)
+        let actions = ProductsListViewModelActions(showProductDetail: showProductDetails)
         let shopVC = dependencies.makeProductsListViewController(actions: actions)
 
         let navVC = UINavigationController(rootViewController: shopVC)
@@ -33,9 +34,9 @@ final class GetProductsFlowCoordinator {
     }
 
     private func showProductDetails(product: Product) {
-        // 🦞
-        let vc = dependencies.makeProductDetailsViewController(product: product)
-//        let vc = UIHostingController(rootView: ProductDetailsSwiftUIView())
+        // 🦞SwiftUI
+//        let vc = dependencies.makeProductDetailsViewController(product: product)
+        let vc = UIHostingController(rootView: self.dependencies.makeProductDetailsSwiftUIView(product: product))
         productsListVC?.navigationController?.pushViewController(vc, animated: true)
     }
 }

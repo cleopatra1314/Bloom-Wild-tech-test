@@ -8,16 +8,28 @@
 
 import SwiftUI
 
+
 struct ProductDetailsSwiftUIView: View {
+    var viewModel: ProductDetailsSwiftUIViewModel!
+    
     var body: some View {
         VStack(spacing: 16.0) {
-            Image("p1")
-                .resizable()
-                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
+            AsyncImage(url: URL(string: viewModel.image)) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                        } else if phase.error != nil {
+                            Image(systemName: "questionmark.circle.fill")
+                                .resizable()
+                        } else {
+                            Color.gray
+                        }
+                    }
+                    .scaledToFit()
+                    .frame(width: 300, height: 300)
                 
-                
-            Label("name", systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
-            Text("Description")
+            Label(viewModel.price, systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
+            Text(viewModel.description)
                 .multilineTextAlignment(.leading)
                 .lineLimit(0)
         }

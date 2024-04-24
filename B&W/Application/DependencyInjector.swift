@@ -35,6 +35,14 @@ final class DependencyContainer {
 
         return ProductDetailsViewController.create(with: makeProductDetailsViewModel(product: product))
     }
+    
+    // 🦞
+    func makeProductDetailsSwiftUIView(product: Product) -> ProductDetailsSwiftUIView {
+
+        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsSwiftUIView(product: product))
+        
+        return productDetailsSUView
+    }
 
     // MARK: - View Models
 
@@ -45,6 +53,10 @@ final class DependencyContainer {
 
     func makeProductDetailsViewModel(product: Product) -> ProductDetailsViewModel {
         return DefaultProductDetailsViewModel(product: product)
+    }
+    
+    func makeProductDetailsSwiftUIView(product: Product) -> DefaultProductDetailsSwiftUIViewModel {
+        return DefaultProductDetailsSwiftUIViewModel(product: product)
     }
 
     // MARK: - Flow Coordinators
