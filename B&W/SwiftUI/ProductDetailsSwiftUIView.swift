@@ -2,14 +2,19 @@ import SwiftUI
 
 struct ProductDetailsSwiftUIView: View {
     @ObservedObject var viewModel: DefaultProductDetailsViewModel
+    
+//    init(viewModel: DefaultProductDetailsViewModel) {
+//        self.viewModel = viewModel
+//    }
 
     var body: some View {
         VStack(spacing: 16.0) {
             if let imageData = viewModel.imageData, let uiImage = UIImage(data: imageData) {
                             Image(uiImage: uiImage)
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 200)
+                                .scaledToFit()
+//                                .aspectRatio(contentMode: .fit)
+//                                .frame(height: 200)
                         } else {
                             // Placeholder or loading indicator can be added here
                             Text("Loading Image...")
@@ -29,7 +34,8 @@ struct ProductDetailsSwiftUIView: View {
 //                    .scaledToFit()
 //                    .frame(width: 300, height: 300)
                 
-            Label(viewModel.price, systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
+            Label(viewModel.price, systemImage: "dollarsign.circle")
+            Text(viewModel.rating.description)
             Text(viewModel.description)
                 .multilineTextAlignment(.leading)
                 .lineLimit(0)
@@ -37,7 +43,7 @@ struct ProductDetailsSwiftUIView: View {
         .onAppear {
                     viewModel.updateImage()
                 }
-        .padding(.horizontal, 16.0)
+        .padding(.horizontal, 24.0)
         .padding(.top, 0.0)
         .navigationTitle(viewModel.name)
         
@@ -45,15 +51,16 @@ struct ProductDetailsSwiftUIView: View {
 }
 
 //#Preview {
-//    ProductDetailsSwiftUIView(viewModel: )
+//    ProductDetailsSwiftUIView(viewModel: <#DefaultProductDetailsViewModel#>)
 //}
 
-struct ProductDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let product = Product(id: "Sample Product", name: "Sample Product", description: "Sample Description", price: "$10", imagePath: "https://example.com/sample-image.jpg")
-        let viewModel = DefaultProductDetailsViewModel(product: product)
-        return NavigationView {
-            ProductDetailsSwiftUIView(viewModel: viewModel)
-        }
-    }
-}
+//struct ProductDetailsView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        let product = Product(id: "Sample Product", name: "Sample Product", description: "Sample Description", price: "$10", imagePath: "https://example.com/sample-image.jpg")
+////        let viewModel = DefaultProductDetailsViewModel(product: product)
+////        return NavigationView {
+////            ProductDetailsSwiftUIView()
+////        }
+//        ProductDetailsSwiftUIView(viewModel: )
+//    }
+//}

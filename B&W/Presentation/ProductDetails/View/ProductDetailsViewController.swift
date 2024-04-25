@@ -21,6 +21,7 @@ class ProductDetailsViewController: UIViewController, StoryboardInstantiable {
         bind(to: viewModel)
     }
 
+    // WARNING: func viewDidLayoutSubviews is called twice.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewModel.updateImage()

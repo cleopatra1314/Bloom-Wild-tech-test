@@ -11,6 +11,11 @@ class ProductsListViewController: UITableViewController, StoryboardInstantiable 
         bind(to: viewModel)
         viewModel.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("❌")
+    }
 
     private func bind(to viewModel: ProductsListViewModel) {
         viewModel.items.observe(on: self) { [weak self] _ in self?.tableView.reloadData() }

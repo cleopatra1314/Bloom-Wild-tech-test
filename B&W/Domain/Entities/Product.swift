@@ -6,6 +6,7 @@ struct Product: Equatable, Identifiable {
     let name: String?
     let description: String?
     let price: String?
+    let rating: Double?
     let imagePath: String?
 }
 

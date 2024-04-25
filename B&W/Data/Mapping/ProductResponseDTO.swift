@@ -23,12 +23,14 @@ extension ProductResponseDTO {
             case name
             case description
             case priceData = "price_data"
+            case rating
             case media
         }
 
         let name: String?
         let description: String?
         let priceData: [ProductPriceDTO]?
+        let rating: Double?
         let media: [ProductMediaDTO]?
     }
 
@@ -65,6 +67,7 @@ extension ProductResponseDTO.ProductDTO {
                      name: attributes.name,
                      description: attributes.description,
                      price: priceString,
+                     rating: attributes.rating,
                      imagePath: attributes.media?.first?.url)
     }
 }

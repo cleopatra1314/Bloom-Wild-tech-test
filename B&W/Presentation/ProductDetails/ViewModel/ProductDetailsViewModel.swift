@@ -10,7 +10,8 @@ protocol ProductDetailsViewModelOutput {
 //    var image: Observable<Data?> { get }
 //    var image: Data? { get }
     var description: String { get }
-    var price: String { get }   
+    var rating: Double { get }
+    var price: String { get }
 }
 
 protocol ProductDetailsViewModel: ProductDetailsViewModelInput, ProductDetailsViewModelOutput { }
@@ -28,25 +29,29 @@ final class DefaultProductDetailsViewModel: ObservableObject, ProductDetailsView
 //    let image: Observable<Data?> = Observable(nil)
 //    var image: String
     let description: String
+    let rating: Double
     let price: String
 
     init(product: Product) {
         self.name = product.name ?? ""
         self.description = product.description ?? ""
         self.imagePath = product.imagePath
+        self.rating = product.rating ?? 0.0
         self.price = product.price ?? ""
     }
 }
 
 extension DefaultProductDetailsViewModel {
+    
     func updateImage() {
         
         guard let imagePath = imagePath else { return }
+        guard imageData == nil else { return }
 
         if let url = URL(string: imagePath) {
 
-            if let image = imageCache.object(forKey: url as NSURL) {
-                
+            if let cachedImageData = imageCache.object(forKey: url as NSURL) {
+                            
             } else {
                 URLSession.shared.dataTask(with: url) { data, response, error in
                     
