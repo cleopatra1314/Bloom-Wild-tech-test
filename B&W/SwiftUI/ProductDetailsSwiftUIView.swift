@@ -1,44 +1,59 @@
-//
-//  SwiftUIView.swift
-//  B&W
-//
-//  Created by cleopatra on 2024/4/23.
-//  Copyright © 2024 Artemis Simple Solutions Ltd. All rights reserved.
-//
-
 import SwiftUI
 
-
 struct ProductDetailsSwiftUIView: View {
-    var viewModel: ProductDetailsSwiftUIViewModel!
-    
+    @ObservedObject var viewModel: DefaultProductDetailsViewModel
+
     var body: some View {
         VStack(spacing: 16.0) {
-            AsyncImage(url: URL(string: viewModel.image)) { phase in
-                        if let image = phase.image {
-                            image
+            if let imageData = viewModel.imageData, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
                                 .resizable()
-                        } else if phase.error != nil {
-                            Image(systemName: "questionmark.circle.fill")
-                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 200)
                         } else {
-                            Color.gray
+                            // Placeholder or loading indicator can be added here
+                            Text("Loading Image...")
                         }
-                    }
-                    .scaledToFit()
-                    .frame(width: 300, height: 300)
+//            Image(uiImage: UIImage.init(data: viewModel.)!))
+//            AsyncImage(url: URL(string: viewModel.image)) { phase in
+//                        if let image = phase.image {
+//                            image
+//                                .resizable()
+//                        } else if phase.error != nil {
+//                            Image(systemName: "questionmark.circle.fill")
+//                                .resizable()
+//                        } else {
+//                            Color.gray
+//                        }
+//                    }
+//                    .scaledToFit()
+//                    .frame(width: 300, height: 300)
                 
             Label(viewModel.price, systemImage: /*@START_MENU_TOKEN@*/"42.circle"/*@END_MENU_TOKEN@*/)
             Text(viewModel.description)
                 .multilineTextAlignment(.leading)
                 .lineLimit(0)
         }
+        .onAppear {
+                    viewModel.updateImage()
+                }
         .padding(.horizontal, 16.0)
         .padding(.top, 0.0)
+        .navigationTitle(viewModel.name)
         
     }
 }
 
-#Preview {
-    ProductDetailsSwiftUIView()
+//#Preview {
+//    ProductDetailsSwiftUIView(viewModel: )
+//}
+
+struct ProductDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        let product = Product(id: "Sample Product", name: "Sample Product", description: "Sample Description", price: "$10", imagePath: "https://example.com/sample-image.jpg")
+        let viewModel = DefaultProductDetailsViewModel(product: product)
+        return NavigationView {
+            ProductDetailsSwiftUIView(viewModel: viewModel)
+        }
+    }
 }

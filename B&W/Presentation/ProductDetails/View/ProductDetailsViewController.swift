@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 class ProductDetailsViewController: UIViewController, StoryboardInstantiable {
 
@@ -6,11 +7,11 @@ class ProductDetailsViewController: UIViewController, StoryboardInstantiable {
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productDescriptionTextView: UITextView!
 
-    private var viewModel: ProductDetailsViewModel!
+    private var viewModel: DefaultProductDetailsViewModel!
 
     static func create(with viewModel: ProductDetailsViewModel) -> ProductDetailsViewController {
         let view = ProductDetailsViewController.instantiateViewController()
-        view.viewModel = viewModel
+        view.viewModel = viewModel as! DefaultProductDetailsViewModel
         return view
     }
 
@@ -25,9 +26,9 @@ class ProductDetailsViewController: UIViewController, StoryboardInstantiable {
         viewModel.updateImage()
     }
 
-    private func bind(to viewModel: ProductDetailsViewModel) {
-        viewModel.image.observe(on: self) { [weak self] in
-            self?.productImageView.image = $0.flatMap(UIImage.init) }
+    private func bind(to viewModel: DefaultProductDetailsViewModel) {
+//        viewModel.imageData.observe(on: self) { [weak self] in
+//            self?.productImageView.image = $0.flatMap(UIImage.init) }
     }
 
     private func setupViews() {

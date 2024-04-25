@@ -36,10 +36,10 @@ final class DependencyContainer {
         return ProductDetailsViewController.create(with: makeProductDetailsViewModel(product: product))
     }
     
-    // 🦞
+    // 🦞For SwiftUI
     func makeProductDetailsSwiftUIView(product: Product) -> ProductDetailsSwiftUIView {
 
-        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsSwiftUIView(product: product))
+        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsViewModel(product: product) as! DefaultProductDetailsViewModel)
         
         return productDetailsSUView
     }
