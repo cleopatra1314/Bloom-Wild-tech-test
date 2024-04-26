@@ -23,7 +23,7 @@ final class DefaultProductDetailsViewModel: ObservableObject, ProductDetailsView
 
     @Published var imageData: Data?
     
-    private let imagePath: String?
+    let imagePath: String?
 
     let name: String
 //    let image: Observable<Data?> = Observable(nil)

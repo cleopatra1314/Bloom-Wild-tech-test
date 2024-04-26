@@ -24,7 +24,7 @@ final class GetProductsFlowCoordinator {
     }
 
     func start() {
-        let actions = ProductsListViewModelActions(showProductDetail: showProductDetails)
+        let actions = ProductsListViewModelActions(showProductDetails: showProductDetails)
         let shopVC = dependencies.makeProductsListViewController(actions: actions)
 
         let navVC = UINavigationController(rootViewController: shopVC)

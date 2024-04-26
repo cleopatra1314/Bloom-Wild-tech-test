@@ -1,7 +1,7 @@
 import Foundation
 
 struct ProductsListViewModelActions {
-    let showProductDetail: (Product) -> Void
+    let showProductDetails: (Product) -> Void
 
 }
 
@@ -57,6 +57,7 @@ final class DefaultProductsListViewModel: ProductsListViewModel {
                 case .success(let data):
                     self.products = data.products
                     self.items.value = data.products.map(ProductsListItemViewModel.init)
+                    
                 case .failure(let error):
                     self.error.value = error.isInternetConnectionError ?
                         NSLocalizedString("No internet connection", comment: "") :
@@ -64,17 +65,18 @@ final class DefaultProductsListViewModel: ProductsListViewModel {
                 }
         })
     }
+    
+
 }
 
 // MARK: - INPUT. View event methods
 
 extension DefaultProductsListViewModel {
     func viewDidLoad() {
-
         load(productQuery: .init(query: query))
     }
 
     func didSelectItem(at index: Int) {
-        actions?.showProductDetail(products[index])
+        actions?.showProductDetails(products[index])
     }
 }

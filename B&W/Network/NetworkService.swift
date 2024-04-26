@@ -40,7 +40,8 @@ public final class DefaultNetworkService {
         self.config = config
     }
 
-    private func request(request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
+    // 🦞
+    func request(request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
 
         let sessionDataTask = sessionManager.request(request) { data, response, requestError in
 
@@ -94,4 +95,5 @@ public class DefaultNetworkSessionManager: NetworkSessionManager {
         task.resume()
         return task
     }
+    
 }
