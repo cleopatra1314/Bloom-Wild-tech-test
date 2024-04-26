@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProductDetailsSwiftUIView: View {
     @ObservedObject var viewModel: DefaultProductDetailsViewModel
+    var imageData: Data
     
 //    init(viewModel: DefaultProductDetailsViewModel) {
 //        self.viewModel = viewModel
@@ -9,16 +10,25 @@ struct ProductDetailsSwiftUIView: View {
 
     var body: some View {
         VStack(spacing: 16.0) {
-            if let imageData = viewModel.imageData, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(height: 200)
-                        } else {
-                            // Placeholder or loading indicator can be added here
-                            Text("Loading Image...")
-                        }
+            if let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .scaledToFit()
+            }
+                
+            
+//            if let imageData = viewModel.imageData, let uiImage = UIImage(data: imageData) {
+//                            Image(uiImage: uiImage)
+//                                .resizable()
+//                                .scaledToFit()
+////                                .aspectRatio(contentMode: .fit)
+////                                .frame(height: 200)
+//                        } else {
+//                            // Placeholder or loading indicator can be added here
+//                            Text("Loading Image...")
+//                        }
+            
+            
 //            Image(uiImage: UIImage.init(data: viewModel.)!))
 //            AsyncImage(url: URL(string: viewModel.image)) { phase in
 //                        if let image = phase.image {

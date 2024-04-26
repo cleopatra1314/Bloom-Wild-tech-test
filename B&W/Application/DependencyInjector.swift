@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-final class DependencyContainer {
+final class DependencyContainer: GetProductsFlowCoordinatorDependencies {
 
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -37,9 +37,9 @@ final class DependencyContainer {
     }
     
     // 🦞For SwiftUI
-    func makeProductDetailsSwiftUIView(product: Product) -> ProductDetailsSwiftUIView {
+    func makeProductDetailsSwiftUIView(product: Product, imageData: Data) -> ProductDetailsSwiftUIView {
 
-        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsViewModel(product: product) as! DefaultProductDetailsViewModel)
+        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsViewModel(product: product) as! DefaultProductDetailsViewModel, imageData: imageData)
         
         return productDetailsSUView
     }
@@ -65,5 +65,3 @@ final class DependencyContainer {
                                           dependencies: self)
     }
 }
-
-extension DependencyContainer: GetProductsFlowCoordinatorDependencies {}

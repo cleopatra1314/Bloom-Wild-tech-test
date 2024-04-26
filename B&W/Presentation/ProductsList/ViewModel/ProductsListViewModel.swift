@@ -1,8 +1,8 @@
 import Foundation
 
 struct ProductsListViewModelActions {
-    let showProductDetails: (Product) -> Void
-
+    let showProductDetails: (Product, Data) -> Void
+//    let showProductImage: (Data) -> Void
 }
 
 protocol ProductsListViewModelInput {
@@ -38,6 +38,8 @@ final class DefaultProductsListViewModel: ProductsListViewModel {
     private var loadTask: Cancellable? { willSet { loadTask?.cancel() } }
 
     var products: [Product] = []
+    
+    var productImageData: [Data] = []
 
     // MARK: - Init
 
@@ -77,6 +79,7 @@ extension DefaultProductsListViewModel {
     }
 
     func didSelectItem(at index: Int) {
-        actions?.showProductDetails(products[index])
+        actions?.showProductDetails(products[index], items.value[index].imageData!)
+//        actions?.showProductImage(productImageData[index])
     }
 }

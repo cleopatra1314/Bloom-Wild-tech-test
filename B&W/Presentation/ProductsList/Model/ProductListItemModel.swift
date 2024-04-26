@@ -9,8 +9,8 @@
 import UIKit
 
 struct ProductListItemModel {
-    let name: String
-    let price: String
-    let description: String
-    let imageData: Data
+    let name: String?
+    let price: String?
+    let description: String?
+    let imageData: Data?
 }

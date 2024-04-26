@@ -3,6 +3,7 @@ import UIKit
 class ProductsListViewController: UITableViewController, StoryboardInstantiable {
 
     var viewModel: ProductsListViewModel!
+    var imageData = [Data]()
 
     // MARK: - Lifecycle
 
@@ -54,6 +55,9 @@ extension ProductsListViewController {
         }
 
         cell.fill(with: viewModel.items.value[indexPath.row])
+        viewModel.items.value[indexPath.row].imageData = cell.imageData
+//        self.imageData.append(cell.imageData)
+//        print("✨\(self.imageData.count)")
 
         return cell
     }

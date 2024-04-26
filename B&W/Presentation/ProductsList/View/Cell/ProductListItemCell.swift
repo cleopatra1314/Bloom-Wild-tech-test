@@ -11,8 +11,7 @@ final class ProductListItemCell: UITableViewCell {
     @IBOutlet private var productImageView: UIImageView!
 
     private var viewModel: ProductsListItemViewModel!
-    private var networkService1: NetworkService!
-    private var networkService2: DefaultNetworkService!
+    var imageData: Data!
 
     func fill(with viewModel: ProductsListItemViewModel) {
         self.viewModel = viewModel
@@ -20,11 +19,14 @@ final class ProductListItemCell: UITableViewCell {
         nameLabel.text = viewModel.name
         priceLabel.text = viewModel.price.description
         descriptionLabel.text = viewModel.description
-        viewModel.imageUrlStringToUIImage { image in
+        
+        viewModel.imageUrlStringToUIImage { image, imageData in
             if let image = image {
+                
                 // 成功加載圖像，使用圖像
                 // 例如，設置圖像視圖的圖像：
                 DispatchQueue.main.async {
+                    self.imageData = imageData
                     self.productImageView.image = image
                 }
                 
