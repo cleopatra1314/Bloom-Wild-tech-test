@@ -31,9 +31,9 @@ final class DependencyContainer: GetProductsFlowCoordinatorDependencies {
         return ProductsListViewController.create(with: makeProductsListViewModel(actions: actions))
     }
 
-    func makeProductDetailsViewController(product: Product) -> ProductDetailsViewController {
+    func makeProductDetailsViewController(product: Product, imageData: Data) -> ProductDetailsViewController {
 
-        return ProductDetailsViewController.create(with: makeProductDetailsViewModel(product: product))
+        return ProductDetailsViewController.create(with: makeProductDetailsViewModel(product: product), imageData: imageData)
     }
     
     // 🦞For SwiftUI
