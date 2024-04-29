@@ -36,10 +36,10 @@ final class DependencyContainer: GetProductsFlowCoordinatorDependencies {
         return ProductDetailsViewController.create(with: makeProductDetailsViewModel(product: product), imageData: imageData)
     }
     
-    // 🦞For SwiftUI
-    func makeProductDetailsSwiftUIView(product: Product, imageData: Data) -> ProductDetailsSwiftUIView {
+    // MARK: - SwiftUI Views
+    func makeProductDetailsView(product: Product, imageData: Data) -> ProductDetailsView {
 
-        let productDetailsSUView = ProductDetailsSwiftUIView(viewModel: makeProductDetailsViewModel(product: product) as! DefaultProductDetailsViewModel, imageData: imageData)
+        let productDetailsSUView = ProductDetailsView(viewModel: makeProductDetailsViewModel(product: product) as! DefaultProductDetailsViewModel, imageData: imageData)
         
         return productDetailsSUView
     }
@@ -54,10 +54,7 @@ final class DependencyContainer: GetProductsFlowCoordinatorDependencies {
     func makeProductDetailsViewModel(product: Product) -> ProductDetailsViewModel {
         return DefaultProductDetailsViewModel(product: product)
     }
-    
-    func makeProductDetailsSwiftUIView(product: Product) -> DefaultProductDetailsSwiftUIViewModel {
-        return DefaultProductDetailsSwiftUIViewModel(product: product)
-    }
+
 
     // MARK: - Flow Coordinators
     func makeGetProductsFlowCoordinator(tabBarController: UITabBarController, navigationController: UINavigationController) -> GetProductsFlowCoordinator {

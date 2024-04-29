@@ -3,7 +3,6 @@ import UIKit
 class ProductsListViewController: UITableViewController, StoryboardInstantiable {
 
     var viewModel: ProductsListViewModel!
-    var imageData = [Data]()
 
     // MARK: - Lifecycle
 
@@ -13,11 +12,6 @@ class ProductsListViewController: UITableViewController, StoryboardInstantiable 
         viewModel.viewDidLoad()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("❌")
-    }
-
     private func bind(to viewModel: ProductsListViewModel) {
         viewModel.items.observe(on: self) { [weak self] _ in self?.tableView.reloadData() }
         viewModel.error.observe(on: self) { [weak self] in self?.showError($0) }
@@ -55,9 +49,10 @@ extension ProductsListViewController {
         }
 
         cell.fill(with: viewModel.items.value[indexPath.row])
+        
+        // Changes: Send image data
+        
         viewModel.items.value[indexPath.row].imageData = cell.imageData
-//        self.imageData.append(cell.imageData)
-//        print("✨\(self.imageData.count)")
 
         return cell
     }

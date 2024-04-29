@@ -40,7 +40,6 @@ public final class DefaultNetworkService {
         self.config = config
     }
 
-    // 🦞
     func request(request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
 
         let sessionDataTask = sessionManager.request(request) { data, response, requestError in
@@ -49,13 +48,14 @@ public final class DefaultNetworkService {
                 var error: NetworkError
                 if let response = response as? HTTPURLResponse {
                     error = .error(statusCode: response.statusCode, data: data)
+
                 } else {
                     error = self.resolve(error: requestError)
                 }
 
                 completion(.failure(error))
             } else {
-                completion(.success(data))
+                    completion(.success(data))
             }
         }
 

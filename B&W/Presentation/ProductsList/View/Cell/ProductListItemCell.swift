@@ -23,15 +23,14 @@ final class ProductListItemCell: UITableViewCell {
         viewModel.imageUrlStringToUIImage { image, imageData in
             if let image = image {
                 
-                // 成功加載圖像，使用圖像
-                // 例如，設置圖像視圖的圖像：
+                // Changes: UI updating should be done on mian thread
+                
                 DispatchQueue.main.async {
                     self.imageData = imageData
                     self.productImageView.image = image
                 }
                 
             } else {
-                // 圖像加載失敗，執行錯誤處理邏輯
                 print("Failed to load image")
             }
         }

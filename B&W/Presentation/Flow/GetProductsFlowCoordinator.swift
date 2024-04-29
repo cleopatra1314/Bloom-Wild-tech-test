@@ -34,9 +34,8 @@ final class GetProductsFlowCoordinator {
     }
 
     private func showProductDetails(product: Product, imageData: Data) {
-        // 🦞SwiftUI
+
         let vc = dependencies.makeProductDetailsViewController(product: product, imageData: imageData)
-//        let vc = UIHostingController(rootView: self.dependencies.makeProductDetailsSwiftUIView(product: product, imageData: imageData))
         productsListVC?.navigationController?.pushViewController(vc, animated: true)
     }
 }

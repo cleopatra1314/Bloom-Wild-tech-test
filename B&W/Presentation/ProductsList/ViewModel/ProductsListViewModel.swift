@@ -1,6 +1,8 @@
 import Foundation
 
 struct ProductsListViewModelActions {
+    
+    // Changes: Reduce the times of sending request by sending image data
     let showProductDetails: (Product, Data) -> Void
 //    let showProductImage: (Data) -> Void
 }
