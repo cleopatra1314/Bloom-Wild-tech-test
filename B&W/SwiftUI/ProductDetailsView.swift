@@ -14,7 +14,9 @@ struct ProductDetailsView: View {
                 if let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
+                        .frame(height: 200)
+                        .clipped()
                 }
                 Label(viewModel.price, systemImage: "dollarsign.circle")
                 HStack(spacing: 16.0) {
@@ -34,6 +36,5 @@ struct ProductDetailsView: View {
         .padding(.horizontal, 24.0)
         .padding(.top, 0.0)
         .navigationTitle(viewModel.name)
-        
     }
 }

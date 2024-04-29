@@ -23,24 +23,7 @@ class ProductsListItemViewModel {
     /// Load image by converting image url string to UIImage.
     /// - Parameter completion: Sending UIImage and image data
     func imageUrlStringToUIImage(completion: @escaping (UIImage?, Data?) -> Void) {
-        
-//        if let url = URL(string: self.imagePath) {
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//
-//                guard let data = data, error == nil else {
-//                    print("Error fetching image:", error ?? "Unknown error")
-//                    completion(nil, nil)
-//                    return
-//                }
-//                self.imageData = data
-//                let image = UIImage(data: data)
-//                completion(image, data)
-//                
-//            }.resume()
-//        } else {
-//            completion(nil, nil)
-//        }
-        
+
         if let url = URL(string: imagePath){
 
             let urlRequest = URLRequest(url: url)

@@ -4,7 +4,6 @@ struct ProductsListViewModelActions {
     
     // Changes: Reduce the times of sending request by sending image data
     let showProductDetails: (Product, Data) -> Void
-//    let showProductImage: (Data) -> Void
 }
 
 protocol ProductsListViewModelInput {
@@ -82,6 +81,5 @@ extension DefaultProductsListViewModel {
 
     func didSelectItem(at index: Int) {
         actions?.showProductDetails(products[index], items.value[index].imageData!)
-//        actions?.showProductImage(productImageData[index])
     }
 }
